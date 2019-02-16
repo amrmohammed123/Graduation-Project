@@ -1,4 +1,3 @@
-import timeit
 import os
 
 #put the folders coming from zip in form drebin-0 , drebin-1, drebin-2 , drebin-3, drebin-4, drebin-5
