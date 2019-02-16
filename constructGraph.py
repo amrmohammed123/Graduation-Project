@@ -21,7 +21,7 @@ def constructGraphFromSmali(path, output):
     currentClass = ''
     currentMethod = ''
     currentInvokeMethod = ''
-    file = open(path, 'r', encoding="utf8")
+    file = open(path, 'r', encoding="latin-1")
     for line in file:
         #check for current class
         if(line.startswith('.class')):
