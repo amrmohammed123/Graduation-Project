@@ -21,29 +21,29 @@ def constructGraphFromSmali(path, output):
     currentClass = ''
     currentMethod = ''
     currentInvokeMethod = ''
-    file = open(path, 'r', errors='ignore')
-    for line in file:
-        #check for current class
-        if(line.startswith('.class')):
-            for i in range(0,len(line)):
-                if line[i] == 'L':
-                    currentClass = line[i:-1]
-                    break
-        #check for current method
-        elif(line.startswith('.method')):
-            currentMethod = line[line.rfind(' ')+1:]
-            output.write(currentClass + '->' + currentMethod)
-        #check for current invoke method
-        elif(line.lstrip().startswith('invoke')):
-            for j in range(0,len(line)):
-                if line[j] == 'L':
-                    currentInvokeMethod = line[j:]
-                    output.write('\t'+currentInvokeMethod)
-                    break
-    file.close()
+    try:
+        file = open(path, 'r', errors='ignore')
+        for line in file:
+            # check for current class
+            if (line.startswith('.class')):
+                for i in range(0, len(line)):
+                    if line[i] == 'L':
+                        currentClass = line[i:-1]
+                        break
+            # check for current method
+            elif (line.startswith('.method')):
+                currentMethod = line[line.rfind(' ') + 1:]
+                output.write(currentClass + '->' + currentMethod)
+            # check for current invoke method
+            elif (line.lstrip().startswith('invoke')):
+                for j in range(0, len(line)):
+                    if line[j] == 'L':
+                        currentInvokeMethod = line[j:]
+                        output.write('\t' + currentInvokeMethod)
+                        break
+        file.close()
+    except FileNotFoundError:
+        return
 
 #pass folder name to constructAllGraphs
 constructAllGraphs("c")
-
-
-
