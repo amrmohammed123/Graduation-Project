@@ -21,7 +21,7 @@ def constructGraphFromSmali(path, output):
     currentClass = ''
     currentMethod = ''
     currentInvokeMethod = ''
-    file = open(path, 'r')
+    file = open(path, 'r', encoding="utf8")
     for line in file:
         #check for current class
         if(line.startswith('.class')):
@@ -40,7 +40,10 @@ def constructGraphFromSmali(path, output):
                     currentInvokeMethod = line[j:]
                     output.write('\t'+currentInvokeMethod)
                     break
+    file.close()
 
 #pass folder name to constructAllGraphs
 constructAllGraphs("c")
+
+
 
