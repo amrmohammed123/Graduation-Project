@@ -23,7 +23,7 @@ def changeFormatToSmali(method):
     elif (returnType == 'boolean'):
         returnType = 'Z'
     elif(returnType.endswith('[]')):
-        returnType = 'L' + returnType[:-1].replace('.', '/') + ';'
+        returnType = '[L' + returnType[:-2].replace('.', '/') + ';'
     else:
         returnType = 'L' + returnType.replace('.', '/') + ';'
     methodName = method[lastSpace+1:-1]
@@ -57,11 +57,11 @@ def changeFormatToSmali(method):
         elif (parameter == 'boolean'):
             formatedMethodName += 'Z'
         elif (parameter.endswith('[]')):
-            formatedMethodName += 'L' + parameter[:-1].replace('.', '/') + ';'
+            formatedMethodName += '[L' + parameter[:-2].replace('.', '/') + ';'
         elif(len(parameter) != 0):
             formatedMethodName += 'L' + parameter.replace('.', '/') + ';'
     formatedMethodName += ')'
     return className + ';->' + formatedMethodName + returnType
 
 
-#changeFormatToSmali('<android.media.effect.FilterGraphEffect: void apply(int,int,int,int)>')
+#print(changeFormatToSmali('<android.accounts.AccountManager: android.accounts.Account[] getAccounts()>'))
